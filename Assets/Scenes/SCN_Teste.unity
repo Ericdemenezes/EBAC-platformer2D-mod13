@@ -415,6 +415,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8007466312498025151, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
   m_PrefabInstance: {fileID: 970390259}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &806719939 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6413013834153556191, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+  m_PrefabInstance: {fileID: 970390259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &931905336
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,13 +454,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidBody: {fileID: 931905338}
-  friction: {x: 0.3, y: 0}
+  friction: {x: 1, y: 0}
   speed: 5
   speedRun: 12
   forceJump: 15
   jumpScaleY: 1.2
   jumpScaleX: 0.8
   animationDuration: 0.15
+  boolRun: Run
+  animator: {fileID: 806719939}
+  playerSwipeDuration: 0.2
 --- !u!50 &931905338
 Rigidbody2D:
   serializedVersion: 4
