@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public Animator animator;
     public float playerSwipeDuration = .2f;
 
+    private int direction = 1;
+
 
     //private bool _isRunning = false;
 
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
             }
 
             animator.SetBool(boolRun, true);
+            direction = -1;
         }
 
         else if (Input.GetKey(KeyCode.RightArrow))
@@ -72,6 +75,7 @@ public class Player : MonoBehaviour
                 myRigidBody.transform.DOScaleX(1, playerSwipeDuration);
             }
             animator.SetBool(boolRun, true);
+            direction = 1;
         }
         else
         {
@@ -98,15 +102,21 @@ public class Player : MonoBehaviour
             myRigidBody.velocity = Vector2.up * forceJump;
             myRigidBody.transform.localScale = Vector2.one;
 
-            DOTween.Kill(myRigidBody.transform);
             HandleScaleJump();
+            DOTween.Kill(myRigidBody.transform.localScale);
+
         }
     }
 
     private void HandleScaleJump()
     {
+        float finalXScale = direction == 1 ? jumpScaleX : -jumpScaleX;
+        myRigidBody.transform.DOScaleX(finalXScale, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(Ease.Flash);
         myRigidBody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(Ease.Flash);
-        myRigidBody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(Ease.Flash);
+
+
+
+       
     }
 }
 
